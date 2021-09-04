@@ -1,0 +1,10 @@
+#!/bin/bash
+chmod u+x set_ssh
+
+service ssh start
+
+adduser -q admin < password.txt
+
+rm password.txt
+
+/bin/sh

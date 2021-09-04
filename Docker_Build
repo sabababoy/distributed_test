@@ -1,0 +1,4 @@
+#!/bin/bash
+
+DOCKER_BUILDKIT=0 docker build . -t jmeter
+docker run -it -p 22:22 jmeter
