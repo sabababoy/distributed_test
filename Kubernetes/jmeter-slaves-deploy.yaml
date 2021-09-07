@@ -1,29 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: jmeter-master
+  name: jmeter-slaves
   labels:
-    jmeter_mode: master
+    jmeter_mode: slave
 spec:
-  replicas: 1
+  replicas: 2 
   selector:
     matchLabels:
-      jmeter_mode: master
+      jmeter_mode: slave
   template:
     metadata:
       labels:
-        jmeter_mode: master
+        jmeter_mode: slave
     spec:
       containers:
-      - name: jmeter-master
+      - name: jmslave
         image: sabababoy/jmeter:latest
         imagePullPolicy: IfNotPresent
-        command: [ "/bin/bash", "-c", "--" ]
-        args: [ "./set_ssh; while true; do sleep 30; done;" ]
-        
         ports:
-        - containerPort: 60000
-          containerPort: 22
+        - containerPort: 1099
+        - containerPort: 50000
         resources:
           limits:
             cpu: 4000m
