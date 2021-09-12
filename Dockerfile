@@ -1,6 +1,6 @@
 FROM ubuntu
 
-EXPOSE 22
+EXPOSE 22 60000 1099 50000
 
 ENV DEBIAN_FRONTEND=noninteractive
 
