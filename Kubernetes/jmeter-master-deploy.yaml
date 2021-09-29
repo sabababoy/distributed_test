@@ -19,7 +19,7 @@ spec:
         image: sabababoy/jmeter:latest
         imagePullPolicy: IfNotPresent
         command: [ "/bin/bash", "-c", "--" ]
-        args: [ "./set_ssh; bash Scripts/start-master.sh; while true; do sleep 30; done;" ]
+        args: [ "cd Scripts; ./set_ssh; bash start-master.sh; while true; do sleep 42; done;" ]
         
         ports:
         - containerPort: 60000

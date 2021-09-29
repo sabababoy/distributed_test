@@ -1,7 +1,12 @@
 #!/bin/bash
 
-bash Script/jmeter-properties-set.sh
+bash jmeter-properties-set.sh
+rm jmeter-properties-set.sh
+rm send-ip-to-master.py
+rm set_ssh
+rm start-slave.sh
 
-python3 apache-jmeter-*/bin/get-ip-from-slave.py
+cd ../apache-jmeter-*/bin
+python3 get-ip-from-slave.py
 
 # bash jmeter-properties-set.py

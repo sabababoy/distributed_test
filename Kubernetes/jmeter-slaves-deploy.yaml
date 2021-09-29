@@ -19,7 +19,7 @@ spec:
         image: sabababoy/jmeter:latest
         imagePullPolicy: IfNotPresent
         command: [ "/bin/bash", "-c", "--" ]
-        args: [ "bash Scripts/start-slave.sh; while true; do sleep 30; done;" ]
+        args: [ "cd Scripts; bash start-slave.sh; while true; do sleep 30; done;" ]
         ports:
         - containerPort: 1099
         - containerPort: 50000

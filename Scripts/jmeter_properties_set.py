@@ -5,7 +5,8 @@ def set_properties(status):
 
 	new_prop = ''
 
-	hosts = open('hosts.txt', 'r')
+	if status == 'master':
+		hosts = open('hosts.txt', 'r')
 
 
 
@@ -18,15 +19,16 @@ def set_properties(status):
 			remote_hosts = line
 			line = 'remote_hosts='
 			for host in hosts.readlines():
-				if host[:-1] not in remote_hosts:
-					line += host[:-1] + ','
+				
+				line += host[:-1] + ','
 
-			line = line[:-2] + '\n'
+			line = line[:-1] + '\n'
 
 		new_prop += line
 
+	if status == 'master':
+		hosts.close()
 
-	hosts.close()
 
 
 	properties.close()

@@ -1,6 +1,6 @@
 import socket
 
-from jmeter-properties-set.py import set_properties()
+from jmeter_properties_set import set_properties
 
 PORT = 8080
 HOST = ''
@@ -18,7 +18,7 @@ while True:
 	
 	if data:
 		hosts = open('hosts.txt', 'a')
-		print(data)
+		# print(data)
 		hosts.write(data.decode("utf-8") + '\n')
 		hosts.close()
 

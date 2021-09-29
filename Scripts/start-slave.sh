@@ -1,7 +1,12 @@
 #!/bin/bash
 
-bash Script/jmeter-properties-set.sh
+bash jmeter-properties-set.sh
 
-python3 apache-jmeter-*/bin/jmeter-properties-set.py
+cd ../apache-jmeter-*/bin
+python3 jmeter_properties_set.py
 
-python3 Scripts/send-ip-to-master.py $(hostname -i)
+cd ../../Scripts
+python3 send-ip-to-master.py $(hostname -i)
+
+cd ../apache-jmeter-*/bin
+./jmeter-server
