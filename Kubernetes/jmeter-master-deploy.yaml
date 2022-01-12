@@ -19,7 +19,7 @@ spec:
         image: sabababoy/jmeter:latest
         imagePullPolicy: IfNotPresent
         command: [ "/bin/bash", "-c", "--" ]
-        args: [ "curl -i -XPOST influxdb-pod:8086/query --data-urlencode 'q=CREATE DATABASE jmeter'; cd Scripts; ./set_ssh; bash start-master.sh; while true; do sleep 42; done;" ]
+        args: [ "echo 'Making Infulx database via http...'; sleep 10; curl -i -XPOST http://influxdb-pod:8086/query --data-urlencode 'q=CREATE DATABASE jmeter'; cd Scripts; ./set_ssh; bash start-master.sh; while true; do sleep 42; done;" ]
         
         ports:
         - containerPort: 60000
@@ -29,10 +29,10 @@ spec:
         #     valueFrom:
         #       fieldRef:
         #         fieldPath: status.podIP
-        resources:
-          limits:
-            cpu: 4000m
-            memory: 4Gi
-          requests:
-            cpu: 500m
-            memory: 512Mi
+        # resources:
+        #   limits:
+        #     cpu: 4000m
+        #     memory: 4Gi
+        #   requests:
+        #     cpu: 500m
+        #     memory: 512Mi
