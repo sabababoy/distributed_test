@@ -15,19 +15,14 @@ spec:
         jmeter_mode: slave
     spec:
       containers:
-      - name: jmslave
+      - name: jmeter-slaves
         image: sabababoy/jmeter:latest
         imagePullPolicy: IfNotPresent
         command: [ "/bin/bash", "-c", "--" ]
-        args: [ "cd Scripts; bash start-slave.sh; while true; do sleep 30; done;" ]
+        args: [ "./apache-jmeter-*/bin/jmeter-server -D server.rmi.ssl.disable=true; while true; do sleep 1; done;"]
         ports:
         - containerPort: 1099
         - containerPort: 50000
-        env:
-          - name: MY_POD_IP
-            valueFrom:
-              fieldRef:
-                fieldPath: status.podIP
         # resources:
         #   limits:
         #     cpu: 4000m

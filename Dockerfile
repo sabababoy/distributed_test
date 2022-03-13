@@ -19,8 +19,3 @@ RUN	cd apache-jmeter-*/lib
 RUN	curl -O https://repo1.maven.org/maven2/kg/apc/cmdrunner/2.2.1/cmdrunner-2.2.1.jar 
 RUN	cd apache-jmeter-*/lib/ext
 RUN	curl -O https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-manager/1.6/jmeter-plugins-manager-1.6.jar
-
-RUN mkdir Scripts
-	
-
-COPY ./Scripts/ /home/Scripts

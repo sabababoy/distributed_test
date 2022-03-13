@@ -1,10 +1,11 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: jmeter-influxdb
   labels:
     app: jmeter-influxdb
 spec:
+  serviceName: jmeter-influxdb-svc
   replicas: 1
   selector:
     matchLabels:
@@ -36,6 +37,12 @@ spec:
       - name: config-volume
         configMap:
          name: influxdb-config
-      - name: influxdb-storage
-        persistentVolumeClaim:
-          claimName: influxdb-pvc
+  volumeClaimTemplates:
+    - metadata:
+        name: influxdb-storage
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
