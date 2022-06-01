@@ -15,7 +15,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/argoproj/applicationset.git
+        repoURL: https://github.com/sabababoy/distributed_test
         targetRevision: HEAD
         path: '{{path}}'
       destination:
