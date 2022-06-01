@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jmeter-influxdb
+  labels:
+    app: jmeter-influxdb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jmeter-influxdb
+  template:
+    metadata:
+      labels:
+        app: jmeter-influxdb
+    spec:
+      containers:
+        - image: influxdb:1.7
+          imagePullPolicy: IfNotPresent
+          name: influxdb
+          volumeMounts:
+          - name: config-volume
+            mountPath: /etc/influxdb
+          - name: influxdb-storage
+            mountPath: /var/lib/influxdb
+          ports:
+            - containerPort: 8083
+              name: influx
+            - containerPort: 8086
+              name: api
+            - containerPort: 2003
+              name: graphite
+          # command: [ "/bin/bash", "-c", "--" ]
+          # args: ["printf '[http]\n  enabled = true\n  bind-address = \":8086\"\n  auth-enabled = false\n' >> /etc/influxdb/influxdb.conf"]
+      volumes:
+      - name: config-volume
+        configMap:
+         name: influxdb-config
+      - name: influxdb-storage
+        persistentVolumeClaim:
+          claimName: influxdb-pvc

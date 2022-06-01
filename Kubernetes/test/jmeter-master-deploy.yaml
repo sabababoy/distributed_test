@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jmeter-master
+  labels:
+    jmeter_mode: master
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      jmeter_mode: master
+  template:
+    metadata:
+      labels:
+        jmeter_mode: master
+    spec:
+      containers:
+      - name: jmeter-master
+        image: sabababoy/jmeter:latest
+        imagePullPolicy: IfNotPresent
+        command: [ "/bin/bash", "-c", "--" ]
+        args: [ "service ssh start; printf \"$NEW_PASSWORD$NEW_PASSWORD\\n\" > conf.txt; adduser $NEW_USERNAME < conf.txt; rm conf.txt;
+ sleep 10; curl -i -XPOST http://jmeter-influxdb-svc:8086/query --data-urlencode 'q=CREATE DATABASE jmeter'; while true; do sleep 1; done;" ]
+        env:
+          - name: NEW_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: new-user
+                key: username
+          - name: NEW_PASSWORD
+            valueFrom:
+               secretKeyRef:
+                name: new-user
+                key: password
+        volumeMounts:
+          - name: loadtest
+            mountPath: /home/load_test
+            subPath: "load_test"
+        ports:
+        - containerPort: 60000
+          containerPort: 22
+      volumes:
+      - name: loadtest 
+        configMap:
+         name: jmeter-load-test
+        
+

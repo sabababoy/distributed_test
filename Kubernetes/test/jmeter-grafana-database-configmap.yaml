@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-database-config
+  labels:
+    app: grafana-jmeter
+data:
+  influx.yaml: |
+    apiVersion: 1
+
+    datasources:
+      - name: jmeter
+        type: influxdb
+        access: proxy
+        database: jmeter
+        user: grafana
+        url: http://jmeter-influxdb-svc:8086
+        jsonData:
+          httpMode: GET
+        secureJsonData:
+          password: grafana
