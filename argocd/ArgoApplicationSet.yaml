@@ -35,7 +35,7 @@ spec:
       - path: Kubernetes
   template:
     metadata:
-      name: '{{path[0]}}'
+      name: testname
     spec:
       project: default
       source:
