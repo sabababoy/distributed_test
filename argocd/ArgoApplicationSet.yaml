@@ -21,3 +21,27 @@ spec:
       destination:
         server: https://kubernetes.default.svc
         namespace: argocd
+       
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-addons
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/sabababoy/distributed_test.git
+      revision: HEAD
+      directories:
+      - path: Kubernetes/*
+  template:
+    metadata:
+      name: '{{path[0]}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/sabababoy/distributed_test.git
+        targetRevision: HEAD
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: default
