@@ -1,31 +1,31 @@
-apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
-metadata:
-  name: loadtestapplicationset
-spec:
-  generators:
-  - git:
-      repoURL: https://github.com/sabababoy/distributed_test.git
-      revision: HEAD
-      directories:
-      - path: Kubernetes
-  template:
-    metadata:
-      name: testname
-    spec:
-      project: default
-      source:
-        repoURL: https://github.com/sabababoy/distributed_test.git
-        targetRevision: HEAD
-        path: Kubernetes
-      destination:
-        server: https://kubernetes.default.svc
-        namespace: argocd
+# apiVersion: argoproj.io/v1alpha1
+# kind: ApplicationSet
+# metadata:
+#   name: loadtestapplicationset
+# spec:
+#   generators:
+#   - git:
+#       repoURL: https://github.com/sabababoy/distributed_test.git
+#       revision: HEAD
+#       directories:
+#       - path: Kubernetes
+#   template:
+#     metadata:
+#       name: testname
+#     spec:
+#       project: default
+#       source:
+#         repoURL: https://github.com/sabababoy/distributed_test.git
+#         targetRevision: HEAD
+#         path: Kubernetes
+#       destination:
+#         server: https://kubernetes.default.svc
+#         namespace: argocd
        
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: cluster-addons
+  name: loadtestapplications
 spec:
   generators:
   - git:
