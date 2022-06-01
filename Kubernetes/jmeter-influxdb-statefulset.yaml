@@ -22,7 +22,7 @@ spec:
           volumeMounts:
           - name: config-volume
             mountPath: /etc/influxdb
-          - name: influxdb-storage
+          - name: influxdb-pvc
             mountPath: /var/lib/influxdb
           ports:
             - containerPort: 8083
@@ -39,7 +39,7 @@ spec:
          name: influxdb-config
   volumeClaimTemplates:
     - metadata:
-        name: influxdb-storage
+        name: influxdb-pvc
       spec:
         accessModes:
         - ReadWriteOnce
