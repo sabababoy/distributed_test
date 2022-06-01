@@ -19,5 +19,5 @@ spec:
         targetRevision: HEAD
         path: Kubernetes
       destination:
-        server: localhost:8080
-        namespace: default
+        server: https://kubernetes.default.svc
+        namespace: argocd
