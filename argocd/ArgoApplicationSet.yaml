@@ -19,5 +19,5 @@ spec:
         targetRevision: HEAD
         path: Kubernetes
       destination:
-        server: https://kubernetes.default.svc
+        server: localhost:8080
         namespace: default
