@@ -32,7 +32,7 @@ spec:
       repoURL: https://github.com/sabababoy/distributed_test.git
       revision: HEAD
       directories:
-      - path: ./*
+      - path: Kubernetes
   template:
     metadata:
       name: '{{path[0]}}'
